@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
         setContentView(binding.root)
 
         val animView = binding.animationView
-        
+
         animView.post {
             animView.pivotX = 0.5f * animView.width
             animView.pivotY = 1f * animView.height
@@ -33,6 +33,7 @@ class MainActivity : ComponentActivity() {
         }
 
         binding.btnReset.setOnClickListener {
+            if (animView.rotationX < 60f) return@setOnClickListener
             val resetAnim = ObjectAnimator.ofFloat(animView, "rotationX", animView.rotationX, 0f).apply {
                 duration = 1000
             }
